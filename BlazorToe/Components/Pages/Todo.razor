@@ -5,7 +5,7 @@
 
 <h3>Todo: @_todos.Count((t) => !t.IsDone)</h3>
 
-<input placeholder="Something todo" @bind="newTodoTitle"/>
+<input placeholder="Something todo" @bind="_newTodoTitle"/>
 <button onclick=@AddTodo>Save Todo</button>
 
 <ul>
@@ -27,22 +27,22 @@
         public bool IsDone { get; set; }
     }
 
-    private string? newTodoTitle;
+    private string? _newTodoTitle;
     private List<TodoItem> _todos = [];
 
     private void AddTodo()
     {
-        if (string.IsNullOrEmpty(newTodoTitle)) {
+        if (string.IsNullOrEmpty(_newTodoTitle)) {
             return;
         }
 
         var todo = new TodoItem {
-            Title = newTodoTitle,
+            Title = _newTodoTitle,
             IsDone = false,
         };
 
         _todos.Add(todo);
-        newTodoTitle = string.Empty;
+        _newTodoTitle = string.Empty;
     }
 
     private void ClearDone()
